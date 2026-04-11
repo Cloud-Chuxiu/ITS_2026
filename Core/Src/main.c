@@ -95,9 +95,18 @@ int main(void)
   MX_TIM2_Init();
   MX_TIM4_Init();
   MX_USART1_UART_Init();
+  MX_TIM8_Init();
+  MX_TIM12_Init();
   /* USER CODE BEGIN 2 */
-  CANFilterInit(&hcan1); //用于初始化can1总线、开启过滤器�?
-  hDJI[0].motorType = M3508; //定义电机类型，可选择M3508�?
+  HAL_TIM_Base_Start_IT(&htim8);  // 启动时基
+  HAL_TIM_Base_Start_IT(&htim12); // 启动时基
+
+
+
+
+
+  CANFilterInit(&hcan1); //用于初始化can1总线、开启过滤器�????
+  hDJI[0].motorType = M3508; //定义电机类型，可选择M3508�????
   DJI_Init();
   /* USER CODE END 2 */
 
@@ -105,21 +114,9 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    positionServo(100, &hDJI[0]); // 位置伺服函数
-    //speedServo(100, &hDJI[0]); // 速度伺服函数
-    // for(int i = 0; i < 8; i++)
-    // {
-    //   hDJI[i].speedPID.output = 100;
-    // }
-    CanTransmit_DJI_1234(&hcan1,hDJI[0].speedPID.output,
-    hDJI[1].speedPID.output,
-    hDJI[2].speedPID.output,
-    hDJI[3].speedPID.output);
-    CanTransmit_DJI_1234(&hcan1,hDJI[4].speedPID.output,
-    hDJI[5].speedPID.output,
-    hDJI[6].speedPID.output,
-    hDJI[7].speedPID.output); // 自行选择�?
-    HAL_Delay(5); // 循环时间�?
+    
+
+// 循环时间，确定PID频率
 
     /* USER CODE END WHILE */
 
@@ -175,11 +172,7 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
-{
-  
 
-}
 /* USER CODE END 4 */
 
 /**
@@ -193,13 +186,22 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   /* USER CODE BEGIN Callback 0 */
-
+  
   /* USER CODE END Callback 0 */
   if (htim->Instance == TIM1) {
     HAL_IncTick();
   }
   /* USER CODE BEGIN Callback 1 */
-
+   else if(htim->Instance == TIM12) 
+   {
+    positionServo(3600, &hDJI[0]);
+    //speedServo(3000, &hDJI[0]);
+    //位置伺服函数
+    CanTransmit_DJI_1234(&hcan1,hDJI[0].speedPID.output,
+    hDJI[1].speedPID.output,
+    hDJI[2].speedPID.output,
+    hDJI[3].speedPID.output);
+   }
   /* USER CODE END Callback 1 */
 }
 

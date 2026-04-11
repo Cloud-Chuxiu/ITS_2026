@@ -34,7 +34,7 @@ void DJI_Init(){
 static uint32_t TxMailbox;
 
 void CanTransmit_DJI_1234(CAN_HandleTypeDef *hcanx, int16_t cm1_iq, int16_t cm2_iq, int16_t cm3_iq, int16_t cm4_iq){
-	CAN_TxHeaderTypeDef TxMessage;
+	CAN_TxHeaderTypeDef TxMessage; 
 		
 	TxMessage.DLC=0x08;
 	TxMessage.StdId=0x200;
