@@ -194,8 +194,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   /* USER CODE BEGIN Callback 1 */
    else if(htim->Instance == TIM12) 
    {
-    positionServo(3600, &hDJI[0]);
-    //speedServo(3000, &hDJI[0]);
+    //positionServo(720, &hDJI[0]);
+    speedServo(600, &hDJI[0]);
     //位置伺服函数
     CanTransmit_DJI_1234(&hcan1,hDJI[0].speedPID.output,
     hDJI[1].speedPID.output,
