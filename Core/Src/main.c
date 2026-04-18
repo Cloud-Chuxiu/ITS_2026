@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "cmsis_os.h"
 #include "can.h"
 #include "tim.h"
 #include "usart.h"
@@ -53,6 +54,7 @@
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -97,6 +99,7 @@ int main(void)
   MX_USART1_UART_Init();
   MX_TIM8_Init();
   MX_TIM12_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim8);  // 启动时基
   HAL_TIM_Base_Start_IT(&htim12); // 启动时基
@@ -111,6 +114,14 @@ int main(void)
   DJI_Init();
   /* USER CODE END 2 */
 
+  /* Init scheduler */
+  osKernelInitialize();  /* Call init function for freertos objects (in freertos.c) */
+  MX_FREERTOS_Init();
+
+  /* Start scheduler */
+  osKernelStart();
+
+  /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -195,9 +206,14 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   /* USER CODE BEGIN Callback 1 */
    else if(htim->Instance == TIM12) 
    {
+<<<<<<< HEAD
     positionServo(600, &hDJI[0]);
     positionServo(600, &hDJI[1]);
     //speedServo(3000, &hDJI[0]);
+=======
+    //positionServo(720, &hDJI[0]);
+    speedServo(600, &hDJI[0]);
+>>>>>>> b179a131e10e969c7504866e29964977cb022b2f
     //位置伺服函数
     CanTransmit_DJI_1234(&hcan1,hDJI[0].speedPID.output,
     hDJI[1].speedPID.output,
