@@ -107,6 +107,7 @@ int main(void)
 
   CANFilterInit(&hcan1); //用于初始化can1总线、开启过滤器�????
   hDJI[0].motorType = M3508; //定义电机类型，可选择M3508�????
+  hDJI[1].motorType = M3508; //定义电机类型，可选择M3508�????
   DJI_Init();
   /* USER CODE END 2 */
 
@@ -194,7 +195,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   /* USER CODE BEGIN Callback 1 */
    else if(htim->Instance == TIM12) 
    {
-    positionServo(3600, &hDJI[0]);
+    positionServo(600, &hDJI[0]);
+    positionServo(600, &hDJI[1]);
     //speedServo(3000, &hDJI[0]);
     //位置伺服函数
     CanTransmit_DJI_1234(&hcan1,hDJI[0].speedPID.output,
