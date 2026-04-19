@@ -13,6 +13,10 @@ void chassis_move(float distance)
 {
     positionServo(distance,&hDJI[0]);
     positionServo(-distance,&hDJI[1]);
+    CanTransmit_DJI_1234(&hcan1,hDJI[0].speedPID.output,
+    hDJI[1].speedPID.output,
+    hDJI[2].speedPID.output,
+    hDJI[3].speedPID.output);
 }
 
 //底盘速度获取
@@ -28,3 +32,18 @@ void chassis_readpos()
 }
 
 //底盘控制代码
+void chassis_ctrl(float distance)
+{
+    while(1)
+    {
+        if(hDJI[0].flag == 1)
+        {
+            chassis_move(distance);
+            hDJI[0].flag = 0;
+        }
+        if(hDJI[0].speedPID.output == 0)
+        {
+            return;
+        }
+    }
+}

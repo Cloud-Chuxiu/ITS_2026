@@ -58,6 +58,8 @@ typedef struct
 
     PID_t speedPID;
     PID_t posPID;
+    //电机控制标志位
+    uint8_t flag;
 } DJI_t;
 
 extern DJI_t hDJI[8];

@@ -38,8 +38,15 @@ void positionServo(float ref, DJI_t * motor){
 	motor->speedPID.ref = motor->posPID.output;
 	motor->speedPID.fdb = motor->FdbData.rpm;
 	PID_Calc(&motor->speedPID);
-
+	
+	//死区
+	/*if(motor->speedPID.output < 0.1)
+	{
+		motor->speedPID.output = 0;
+	}
+	*/
 }
+
 
 //速度伺服函数
 void speedServo(float ref, DJI_t * motor){

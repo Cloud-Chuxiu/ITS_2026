@@ -5,5 +5,13 @@
 
 #include "DJI.h"
 #include "Caculate.h"
+#include <stdio.h>
+#include "wtr_can.h"
+
+void chassis_init();
+void chassis_readspeed();
+void chassis_move(float distance);
+void chassis_readpos();
+void chassis_ctrl(float distance);
 
 
