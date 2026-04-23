@@ -8,7 +8,7 @@ void chassis_init()
     hDJI[1].motorType = M3508;  //底盘的两个电机ID为0，1
     DJI_Init();
 }
-
+//底盘控制
 void chassis_move(float distance)
 {
     positionServo(distance,&hDJI[0]);
