@@ -12,7 +12,7 @@ void beam_Init()
 //
 void beam_move(float distance)
 {
-    speedServo(distace,hDJI[2]);
+    speedServo(distance,&hDJI[2]);
     CanTransmit_DJI_1234(&hcan1,hDJI[0].speedPID.output,
     hDJI[1].speedPID.output,
     hDJI[2].speedPID.output,
@@ -24,7 +24,7 @@ void beam_move(float distance)
 
 void beam_ctrl(float pos) //зјБъ
 {
-    beam_move(pos - y);
+    beam_move(pos);
 }
 
 

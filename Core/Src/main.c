@@ -29,6 +29,7 @@
 #include "DJI.h"
 #include "wtr_can.h"
 #include "Caculate.h"
+#include "string.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -108,9 +109,9 @@ int main(void)
 
 
 
-  CANFilterInit(&hcan1); //用于初始化can1总线、开启过滤器�????
-  hDJI[0].motorType = M3508; //定义电机类型，可选择M3508�????
-  hDJI[1].motorType = M3508; //定义电机类型，可选择M3508�????
+  CANFilterInit(&hcan1); //用于初始化can1总线、开启过滤器�?????
+  hDJI[0].motorType = M3508; //定义电机类型，可选择M3508�?????
+  hDJI[1].motorType = M3508; //定义电机类型，可选择M3508�?????
   DJI_Init();
   /* USER CODE END 2 */
 
@@ -202,7 +203,12 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   /* USER CODE BEGIN Callback 1 */
    else if(htim->Instance == TIM12) 
    {
-     hDJI[0].flag = 1;
+    
+     positionServo(720,&hDJI[2]);
+     CanTransmit_DJI_1234(&hcan1,hDJI[0].speedPID.output,
+    hDJI[1].speedPID.output,
+    hDJI[2].speedPID.output,
+    hDJI[3].speedPID.output);
    }
   /* USER CODE END Callback 1 */
 }
