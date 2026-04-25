@@ -5,5 +5,9 @@
 
 #include "Head.h"
 
-float Chassis_distance
-float *pChassis_distance
+float Chassis_distance;
+float *pChassis_distance;
+
+//任务开启函数
+void Chassis_Start();
+

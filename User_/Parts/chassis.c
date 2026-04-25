@@ -22,13 +22,16 @@ void chassis_move(float distance)
 //底盘速度获取
 void chassis_readspeed()
 {
+    //打印测试
     printf("%f",hDJI[0].AxisData.AxisVelocity);
 }
 
 //底盘位置获取
 void chassis_readpos()
 {
-    printf("%f",hDJI[0].AxisData.AxisAngle_inDegree);
+    printf("%f",hDJI[0].AxisData.AxisAngle_inDegree); //打印至串口便于观察
+    crane_xyz.state_x = hDJI[0].AxisData.AxisVelocity;
+
 }
 
 //底盘控制代码

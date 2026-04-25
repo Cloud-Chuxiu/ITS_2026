@@ -21,7 +21,9 @@ void Chassis_Function(void *argument)
   /* Infinite loop */
   for(;;)
   {
+    //底盘伺服线程 移动指定距离，并且返回坐标
     chassis_ctrl(Chassis_distance);
+    chassis_readpos();
     osDelay(1);
   }
   /* USER CODE END ITS_Function */

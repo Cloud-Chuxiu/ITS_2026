@@ -14,3 +14,4 @@ typedef struct{
 
 }coordinate;
 
+extern coordinate crane_xyz;

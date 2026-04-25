@@ -5,8 +5,9 @@
 
 #include "DJI.h"
 #include "Caculate.h"
-#include <stdio.h>
 #include "wtr_can.h"
+#include "State.h"
+#include "usart.h"
 
 void chassis_init();
 void chassis_readspeed();
