@@ -30,11 +30,12 @@
 #include "wtr_can.h"
 #include "Caculate.h"
 #include "string.h"
+#include "Thread_Start.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+extern float* pBeam_distance;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -105,9 +106,12 @@ int main(void)
   HAL_TIM_Base_Start_IT(&htim8);  // 启动时基
   HAL_TIM_Base_Start_IT(&htim12); // 启动时基
   CANFilterInit(&hcan1); //用于初始化can1总线、开启过滤器�?????
-
-  hDJI[0].motorType = M3508; //定义电机类型，可选择M3508�?????
-  hDJI[1].motorType = M3508; //定义电机类型，可选择M3508�?????
+  CANFilterInit(&hcan2); //用于初始化can2总线、开启过滤器�?????
+  for (int i = 0;i++;i < 8)
+  {
+    hDJI[i].motorType = M3508;
+  }
+  
   DJI_Init();
   /* USER CODE END 2 */
 
@@ -118,6 +122,7 @@ int main(void)
   /* Start scheduler */
   osKernelStart();
 
+  *pBeam_distance = 720;
   /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */

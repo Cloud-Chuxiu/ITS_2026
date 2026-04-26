@@ -25,7 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "Thread_Chassis.h"
+#include "Thread_Start.h"
 
 /* USER CODE END Includes */
 
@@ -115,7 +115,7 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
-  Chassis_Start();
+  Beam_Start();
   /* Infinite loop */
   
   for(;;)

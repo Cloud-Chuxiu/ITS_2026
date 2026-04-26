@@ -28,7 +28,8 @@ void beam_ctrl(float pos) //坐标
     {
         if(hDJI[2].flag == 1)
         {
-            beam_move(distance);
+            beam_move(pos);
+            beam_posget();
             hDJI[2].flag = 0;
         }
         if(hDJI[2].speedPID.output == 0)
@@ -40,8 +41,9 @@ void beam_ctrl(float pos) //坐标
 
 void beam_posget()
 {
-    printf("%f",hDJI[2].AxisData.AxisAngle_inDegree);
+    printf("%f\n",hDJI[2].AxisData.AxisAngle_inDegree);
     crane_xyz.state_y = hDJI[2].AxisData.AxisVelocity;
+    printf("%f\n",crane_xyz.state_y);
 }
 
 

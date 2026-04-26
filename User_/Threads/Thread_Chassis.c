@@ -1,7 +1,9 @@
 #include "Head.h"
 #include "chassis.h"
 
-extern float Chassis_distance;
+float Chassis_distance;
+float* pChassis_distance = &Chassis_distance;
+
 
 osMessageQueueId_t Chassis_Queue01Handle;     //定义消息队列的句柄 （全局）
 const osMessageQueueAttr_t Chassis_Queue01_attributes = {
@@ -18,6 +20,7 @@ void Chassis_Function(void *argument)
   
   Chassis_Queue01Handle = osMessageQueueNew (16, sizeof(float), &Chassis_Queue01_attributes);//初始化队列
   xMutex_test01 = xSemaphoreCreateRecursiveMutex(); //初始化递归互斥量
+  chassis_init();
   /* Infinite loop */
   for(;;)
   {
