@@ -111,7 +111,6 @@ int main(void)
   {
     hDJI[i].motorType = M3508;
   }
-  
   DJI_Init();
   /* USER CODE END 2 */
 
@@ -122,7 +121,7 @@ int main(void)
   /* Start scheduler */
   osKernelStart();
 
-  *pBeam_distance = 720;
+  
   /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */

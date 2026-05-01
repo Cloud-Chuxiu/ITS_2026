@@ -19,14 +19,13 @@ void Chassis_Function(void *argument)
   Chassis_Queue01Handle = osMessageQueueNew (16, sizeof(float), &Chassis_Queue01_attributes);//初始化队列
   xMutex_test01 = xSemaphoreCreateRecursiveMutex(); //初始化递归互斥量
   
-  
   chassis_init();
   
   /* Infinite loop */
   for(;;)
   {
     //底盘伺服线程 移动指定距离，并且返回坐标
-    // chassis_ctrl(360);
+    chassis_ctrl(360);
     // chassis_readpos();
     osDelay(1);
   }

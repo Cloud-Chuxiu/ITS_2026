@@ -3,12 +3,12 @@
 //底盘初始化
 void chassis_init()
 {
-  printf("Chassis ready\n");
 
     hDJI[0].motorType = M3508; 
     hDJI[1].motorType = M3508;  //底盘的两个电机ID为0，1
-
     DJI_Init();
+    hDJI[0].flag = 1;
+
 }
 //底盘控制
 void chassis_move(float distance)
@@ -37,20 +37,18 @@ void chassis_readpos()
 
 //底盘控制代码
 void chassis_ctrl(float distance)
-
-{
-    while(1)
+{    
+    //printf("ctrl ready\n");
+    if(hDJI[0].flag == 1)
     {
-        if(hDJI[0].flag == 1)
-        {
-            chassis_move(distance);
-            hDJI[0].flag = 0;
-        }
-        if(hDJI[0].speedPID.output == 0)
-        {
+
+        chassis_move(distance);
+        hDJI[0].flag = 0;
+    }
+    if(hDJI[0].speedPID.output == 0)
+    {
             
-            return;
-        }
+        return;
     }
 }
 

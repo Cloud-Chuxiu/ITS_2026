@@ -22,8 +22,7 @@ void Beam_Function(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    printf("beam ready!\n");
-    //beam_ctrl(Beam_distance);
+    beam_ctrl(Beam_distance);
     osDelay(1);
   }
   /* USER CODE END ITS_Function */
