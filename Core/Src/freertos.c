@@ -115,7 +115,9 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
-  Beam_Start();
+  //Beam_Start();
+
+  Chassis_Start();
   /* Infinite loop */
   
   for(;;)

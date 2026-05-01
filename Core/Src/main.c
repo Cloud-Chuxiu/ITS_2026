@@ -207,7 +207,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     //启动PID计算
      for (int i = 0;i < 8;i++)
      {
-      hDJI[i].flag = 0;
+      hDJI[i].flag = 1;
      }
    }
   /* USER CODE END Callback 1 */

@@ -1,6 +1,5 @@
 #ifndef _STATE_H__
 #define _STATE_H__
-#endif
 
 #include "DJI.h"
 
@@ -15,3 +14,6 @@ typedef struct{
 }coordinate;
 
 extern coordinate crane_xyz;
+extern coordinate target_xyz;
+
+#endif
